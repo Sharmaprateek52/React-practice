@@ -1,8 +1,15 @@
+import HomePage from "./pages/HomePage";
 import TaskPage from "./pages/taskpage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-  <TaskPage />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/tasks" element={<TaskPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
