@@ -1,5 +1,5 @@
 import HomePage from "./pages/HomePage";
-import TaskPage from "./pages/taskpage";
+import TaskPage from "./pages/TaskPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
