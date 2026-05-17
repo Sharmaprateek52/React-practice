@@ -1,0 +1,103 @@
+.search-history {
+  max-width: 1000px;
+  margin: 1.5rem auto;
+  padding: 0.5rem 0;
+}
+
+.search-history__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.search-history__title {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #0f172a;
+}
+
+.search-history__clear {
+  background: transparent;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 0.45rem 0.75rem;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #0f172a;
+  font-weight: 600;
+  transition: background 0.12s ease, transform 0.08s ease;
+}
+
+.search-history__clear:hover {
+  background: rgba(15, 23, 42, 0.04);
+  transform: translateY(-1px);
+}
+
+.search-history__empty {
+  margin: 0.5rem 0 0;
+  color: #475569;
+}
+
+/* Horizontal scroll list */
+.search-history__list {
+  display: flex;
+  gap: 0.9rem;
+  padding: 0.6rem 0.25rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.search-history__item {
+  flex: 0 0 auto;
+  min-width: 320px; /* ensures card doesn't shrink too small */
+}
+
+/* hide scrollbar but keep functionality */
+.search-history__list::-webkit-scrollbar {
+  height: 8px;
+}
+
+.search-history__list::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.12);
+  border-radius: 999px;
+}
+
+.search-history__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* make the scroll area show a subtle gradient fade at edges */
+.search-history__list {
+  position: relative;
+}
+
+.search-history__list::before,
+.search-history__list::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 36px;
+  pointer-events: none;
+}
+
+.search-history__list::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(248,250,252,1), rgba(248,250,252,0));
+}
+
+.search-history__list::after {
+  right: 0;
+  background: linear-gradient(-90deg, rgba(248,250,252,1), rgba(248,250,252,0));
+}
+
+@media (max-width: 540px) {
+  .search-history__item {
+    min-width: 280px;
+  }
+
+  .search-history__title {
+    font-size: 1rem;
+  }
+}

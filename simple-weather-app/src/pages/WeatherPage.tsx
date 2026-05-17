@@ -5,11 +5,14 @@ import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
 import WeatherCard from '../components/WeatherCard';
 import { fetchWeather } from '../services/weatherService';
+import useLocalStorage from '../hooks/useLocalStorage';
+import SearchHistory from '../components/SearchHistory';
 
 function WeatherPage() {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [searchHistory, setSearchHistory] = useLocalStorage();
 
   async function handleSearch(city: string) {
     try {
@@ -23,6 +26,7 @@ function WeatherPage() {
         icon: data.weather[0].icon,
       };
       setWeather(formattedWeather);
+      setSearchHistory((prev) => [formattedWeather, ...prev]);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : 'Failed to fetch weather data.'
@@ -32,6 +36,10 @@ function WeatherPage() {
       setLoading(false);
     }
   }
+
+  const clearHistory = () => {
+    setSearchHistory([]);
+  };
 
   return (
     <div className="weather-page">
@@ -43,6 +51,12 @@ function WeatherPage() {
       {error && <ErrorMessage message={error} />}
 
       {weather && <WeatherCard weatherData={weather} />}
+      {searchHistory && (
+        <SearchHistory
+          searchHistory={searchHistory}
+          onClearSearchHistory={clearHistory}
+        />
+      )}
     </div>
   );
 }
